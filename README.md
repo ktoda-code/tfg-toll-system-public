@@ -30,8 +30,3 @@ This repository hosts my bachelor thesis project, a comprehensive exploration of
 The architecture of the system:
 
 ![Architecture](thesis/1-flow_of_data.png)
-
-## A little video demo:
-
-![Demo]()
-

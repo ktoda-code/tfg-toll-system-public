@@ -3,7 +3,7 @@ This repository hosts my bachelor thesis project, a comprehensive exploration of
 
 ## Tech Stack used
 
-![Tech stack]()
+![Tech stack](thesis/tech_stack_toll.png)
 
 - DevOps
   - Jenkins
@@ -29,7 +29,7 @@ This repository hosts my bachelor thesis project, a comprehensive exploration of
 ## Architecture
 The architecture of the system:
 
-![Architecture]()
+![Architecture](thesis/1-flow_of_data.png)
 
 ## A little video demo:
 

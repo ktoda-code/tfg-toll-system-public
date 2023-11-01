@@ -1,0 +1,10 @@
+<tr th:each="point : ${exitPoints}">
+    <td th:text="${point.pointId()}"></td>
+    <td th:text="${point.km()}"></td>
+    <td>
+        <button type="button" class="selectPoint btn btn-primary" th:data-id="${point.pointId()}">
+            Select
+        </button>
+    </td>
+</tr>
+

@@ -1,0 +1,110 @@
+<!--
+  ~ Copyright (c) Toll System Prototype, KONSTANTIN TODOROV ANDREEV 2023.
+  ~
+  ~ Licensed under the Attribution-NonCommercial-NoDerivatives 4.0 International License.
+  ~ You may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  ~
+  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org " lang="en" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Eagle Module Demo</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+          crossorigin="anonymous">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js" defer></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous" defer></script>
+    <script src="/js/theme.js" defer></script>
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg bg-primary">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                    <a id="bd-theme" class="nav-link dropdown-toggle"
+                       href="#"
+                       role="button"
+                       data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        Theme
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="bd-theme">
+                        <li>
+                            <button type="button"
+                                    class="dropdown-item align-items-center active"
+                                    data-bs-theme-value="light">
+                                Light
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button"
+                                    class="dropdown-item align-items-center"
+                                    data-bs-theme-value="dark">
+                                Dark
+                            </button>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="nav-link" th:href="@{/eagle/transactions}">Transactions</a>
+                </li>
+                <li>
+                    <a class="nav-link" th:href="@{/eagle/logs}">Passthroughs (Logs)</a>
+                </li>
+                <li>
+                    <a class="nav-link" th:href="@{/templates/eagle}">DEMO</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<h1 class="h1 m-5">Logs</h1>
+<table id="logTable" class="table table-bordered">
+    <caption>List of logs</caption>
+    <thead class="table-dark">
+    <tr>
+        <th>Id</th>
+        <th>Amount</th>
+        <th>When</th>
+        <th>Status</th>
+        <th>Where</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="transaction : ${transactions}">
+        <td th:text="${transaction.transactionId()}"></td>
+        <td th:text="${transaction.amount()}"></td>
+        <td th:text="${transaction.timestamp()}"></td>
+        <td th:text=" ${transaction.status()}"></td>
+        <td th:text="${transaction.section().sectionId()}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+
+</html>

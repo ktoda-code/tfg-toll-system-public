@@ -1,0 +1,59 @@
+/*
+ * Copyright (c) Toll System Prototype, KONSTANTIN TODOROV ANDREEV 2023.
+ *
+ * Licensed under the Attribution-NonCommercial-NoDerivatives 4.0 International License.
+ * You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
+#suggestions-list {
+    list-style-type: none;
+    padding: 0;
+    position: absolute;
+    z-index: 100;
+    width: 35%; /* make it stretch full width of its parent */
+}
+
+
+#suggestions-list li {
+    margin: 5px 0;
+}
+
+#suggestions-list a {
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+    /*font-style: oblique;*/
+    font-weight: 600;
+    /*background-color: rgba(41, 232, 218, 0.53);*/
+    /*backdrop-filter: blur(13px);*/
+    /*-webkit-backdrop-filter: blur(13px);*/
+    /*border: none;*/
+    padding: 5px 10px;
+    margin-right: 10px;
+}
+
+#suggestions-list .description {
+    color: #505050;
+    font-size: 0.9em;
+}
+
+.suggestion-drodown {
+    /* From https://css.glass */
+    background: rgba(41, 232, 218, 0.53);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.27);
+    backdrop-filter: blur(12.5px);
+    -webkit-backdrop-filter: blur(12.5px);
+    border: 0px solid rgba(76, 213, 203, 0.23);
+    margin: 1rem 550px;
+}

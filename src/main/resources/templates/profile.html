@@ -1,0 +1,265 @@
+<!--
+  ~ Copyright (c) Toll System Prototype, KONSTANTIN TODOROV ANDREEV 2023.
+  ~
+  ~ Licensed under the Attribution-NonCommercial-NoDerivatives 4.0 International License.
+  ~ You may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  ~
+  -->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org " lang="en" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Profile</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+          crossorigin="anonymous">
+    <link href="/style/index.css" rel="stylesheet">
+    <link href="/style/font.css" rel="stylesheet">
+    <link href="/style/background-sign.css" rel="stylesheet">
+    <link href="/style/search-bar.css" rel="stylesheet">
+    <link href="/style/cookie.css" rel="stylesheet">
+
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js" defer></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous" defer></script>
+
+    <!-- Sign scripts  -->
+    <script src="/js/search-bar.js" defer></script>
+    <script src="/js/cookie.js" defer></script>
+
+    <style>
+        .card {
+            box-shadow: 1px 1px 4px black;
+        }
+
+        .btn-danger {
+            border-radius: 20px !important;
+        }
+    </style>
+<body>
+
+<div th:insert="~{navbar}"></div>
+<br>
+<div class="page-wrap">
+    <div class="container">
+        <form th:action="@{/updateProfile}" method="post" th:object="${userProfileUpdate}">
+            <div class="row">
+                <!-- Personal Information & Address Card -->
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <div class="card-header">Personal Information & Address</div>
+                        <div class="card-body">
+                            <!-- Personal Information -->
+                            <h5>Personal Information</h5>
+                            <div class="mb-3">
+                                <label><strong>Name:</strong></label>
+                                <input type="text" class="form-control" th:value="${userInfo.firstName}"
+                                       th:field="*{firstName}"/>
+                                <br>
+                                <input type="text" class="form-control" th:value="${userInfo.lastName}"
+                                       th:field="*{lastName}"/>
+                            </div>
+                            <div class="mb-3">
+                                <label><strong>Email:</strong></label>
+                                <input type="email" class="form-control" th:value="${userInfo.email}"
+                                       th:field="*{email}"/>
+                            </div>
+                            <div class="mb-3">
+                                <label><strong>Password:</strong></label>
+                                <input type="password" class="form-control"
+                                       th:field="*{password}"/>
+                            </div>
+                            <div class="mb-3">
+                                <label><strong>Registered On:</strong></label>
+                                <input type="text" class="form-control" th:value="${userInfo.registeredOn}"
+                                       readonly/>
+                            </div>
+
+                            <!-- Address -->
+                            <h5>Address</h5>
+                            <div class="mb-3">
+                                <label><strong>Province:</strong></label>
+                                <input type="text" class="form-control" th:value="${addressInfo.province}"
+                                       th:field="*{province}"/>
+                            </div>
+                            <div class="mb-3">
+                                <label><strong>City:</strong></label>
+                                <input type="text" class="form-control" th:value="${addressInfo.city}"
+                                       th:field="*{city}"/>
+                            </div>
+                            <div class="mb-3">
+                                <label><strong>Street:</strong></label>
+                                <input type="text" class="form-control" th:value="${addressInfo.street}"
+                                       th:field="*{street}"/>
+                            </div>
+                            <div class="mb-3">
+                                <label><strong>Number:</strong></label>
+                                <input type="text" class="form-control" th:value="${addressInfo.number}"
+                                       th:field="*{addressNumber}"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right side cards -->
+                <div class="col-md-6">
+                    <!-- Vehicle Card -->
+                    <div class="mb-4">
+                        <div class="card">
+                            <div class="card-header">Vehicle</div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label><strong>License Plate:</strong></label>
+                                    <input type="text" class="form-control" th:value="${vehicleInfo.licensePlate}"
+                                           th:field="*{licensePlate}"
+                                           name="licensePlate"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label><strong>Brand:</strong></label>
+                                    <input type="text" class="form-control" th:value="${vehicleInfo.brand}"
+                                           th:field="*{brand}"
+                                           name="brand"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label><strong>Model:</strong></label>
+                                    <input type="text" class="form-control" th:value="${vehicleInfo.model}"
+                                           th:field="*{model}"
+                                           name="model"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="vehicleType"><strong>Type:</strong></label>
+                                    <select id="vehicleType" name="vehicleType" th:field="*{vehicleType}"
+                                            class="form-select" required>
+                                        <option value="" disabled selected>Select a category</option>
+                                        <option th:each="type : ${T(eus.ehu.tfg.ktoda.tollsystem.vehicle.VehicleType).values()}"
+                                                th:value="${type}" th:text="${type}"></option>
+                                    </select>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Telephone Card -->
+                    <div class="mb-4">
+                        <div class="card">
+                            <div class="card-header">Telephone</div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label><strong>Number:</strong></label>
+                                    <input type="text" class="form-control" th:if="${telephoneInfo != null}"
+                                           th:value="${telephoneInfo.number}" th:field="*{telephoneNumber}"
+                                           name="telephoneNumber"/>
+                                    <input type="text" class="form-control" th:if="${telephoneInfo == null}"
+                                           th:field="*{telephoneNumber}"
+                                           name="telephoneNumber"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Buttons Card -->
+                    <div class="mb-4">
+                        <div class="card">
+                            <div class="card-header">Action</div>
+                            <div class="card-body d-flex justify-content-center">
+                                <button type="submit" class="btn custom-btn-shape-color">Update Profile</button>
+                                <br>
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                        data-bs-target="#deleteConfirmationModal">
+                                    Delete Account
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="error-modal" tabindex="-1" aria-labelledby="error-modal-label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!-- Change title based on condition -->
+                <h1 class="modal-title fs-5" id="error-modal-label">Errors</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!--  Add errors here if any and trigger when errors -->
+                <ul>
+                    <li th:each="error : ${errors}" th:text="${error}"></li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="custom-btn-shape-color" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Deletion Confirmation Modal -->
+<div class="modal fade" id="deleteConfirmationModal" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteConfirmationModalLabel">Confirmation</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete your account? This action is irreversible.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <form th:action="@{/deleteProfile}" method="post">
+                    <button type="submit" class="btn btn-danger">Delete Account</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div th:insert="~{cookie-sticky}"></div>
+
+<div th:insert="~{footer}"></div>
+
+</body>
+<script th:inline="javascript">
+    window.onload = function () {
+        let errorModal = new bootstrap.Modal(document.getElementById('error-modal'));
+        let formErrors = /*[[${not #lists.isEmpty(errors)}]]*/ false;
+
+        // Check if there are any errors
+        if (formErrors) {
+            errorModal.show();
+        }
+    };
+</script>
+</html>

@@ -1,0 +1,155 @@
+<!--
+  ~ Copyright (c) Toll System Prototype, KONSTANTIN TODOROV ANDREEV 2023.
+  ~
+  ~ Licensed under the Attribution-NonCommercial-NoDerivatives 4.0 International License.
+  ~ You may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  ~
+  -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org " lang="en" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <title>API Documentation</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+          crossorigin="anonymous">
+    <link href="/style/index.css" rel="stylesheet">
+    <link href="/style/font.css" rel="stylesheet">
+    <link href="/style/search-bar.css" rel="stylesheet">
+    <link href="/style/cookie.css" rel="stylesheet">
+    <link href="/style/cookie-policy.css" rel="stylesheet">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js" defer></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous" defer></script>
+
+    <!-- Index scripts -->
+    <script src="/js/search-bar.js" defer></script>
+    <script src="/js/index.js" defer></script>
+    <script src="/js/cookie.js" defer></script>
+    <script src="/js/cookie-policy.js" defer></script>
+
+    <style>
+        code {
+            color: #297a74;
+        }
+    </style>
+</head>
+
+<body>
+<div th:insert="~{navbar}"></div>
+<br>
+
+<div class="left-nav">
+    <ul>
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#service">Service Overview</a></li>
+        <li><a href="#pointLogs">Point Logs API</a></li>
+        <li><a href="#sections">Section API</a></li>
+        <li sec:authorize="isAuthenticated()"><a href="#authenticated">Authenticated Section</a></li>
+    </ul>
+</div>
+
+<div class="content mx-auto" style="max-width: 800px;">
+    <section id="introduction">
+        <h1>API Documentation</h1>
+        <hr>
+        <p>Introduction to the auToll - Toll System API. Explanation of how to use and the benefits of integrating with
+            our system.</p>
+    </section>
+
+    <section id="service">
+        <h2>Service Overview</h2>
+        <hr>
+        <p>General overview of all services offered by the API.</p>
+    </section>
+
+    <section id="pointLogs">
+        <h2>Point Logs API</h2>
+        <hr>
+        <p>Explanation and usage of the Point Logs API, including the following endpoints:</p>
+        <ul>
+            <li><code>GET /api/v1/logs</code> - Retrieve all logs.</li>
+            <li><code>GET /api/v1/logs/point/{id}</code> - Retrieve logs by point.</li>
+        </ul>
+    </section>
+
+    <section id="sections">
+        <h2>Section API</h2>
+        <hr>
+        <p>Manage and retrieve information about different sections of the auToll highway. This includes getting a list
+            of all sections, sections with their respective toll points, sections with fee structures, and a specific
+            section by its ID.</p>
+        <ul>
+            <li><code>GET /api/v1/sections</code> - Retrieve a list of all sections.</li>
+            <li><code>GET /api/v1/sections/points</code> - Get sections with their respective toll points.</li>
+            <li><code>GET /api/v1/sections/fees</code> - Get sections with their fee structures.</li>
+            <li><code>GET /api/v1/sections/{sectionId}</code> - Retrieve details of a specific section using its ID.
+            </li>
+        </ul>
+    </section>
+
+    <section id="authenticated" sec:authorize="isAuthenticated()">
+        <h2>Authenticated Section</h2>
+        <hr>
+        <p>Information only available for authenticated users. Generate JWT token here for further API usage.</p>
+        <button id="generateTokenBtn" class="btn btn-primary">Generate Token</button>
+        <div class="mt-3">
+            <label for="jwtToken">Your JWT Token:</label>
+            <textarea id="jwtToken" rows="4" cols="50" readonly></textarea>
+        </div>
+    </section>
+</div>
+
+<div th:insert="~{cookie-sticky}"></div>
+<div th:insert="~{footer}"></div>
+</body>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById('generateTokenBtn').addEventListener('click', function () {
+            // Extract CSRF token from meta tags
+            var token = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+            var header = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+
+            // Use XMLHttpRequest or Fetch API
+            fetch("/docs/generate-token", {
+                method: 'POST',
+                headers: {
+                    // Add CSRF token header to the request
+                    [header]: token
+                }
+            })
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('jwtToken').value = data;
+                })
+                .catch(() => {
+                    alert('Failed to generate token.');
+                });
+        });
+    });
+
+</script>
+
+</html>

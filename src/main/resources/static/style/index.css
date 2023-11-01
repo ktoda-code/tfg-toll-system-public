@@ -1,0 +1,151 @@
+/*
+ * Copyright (c) Toll System Prototype, KONSTANTIN TODOROV ANDREEV 2023.
+ *
+ * Licensed under the Attribution-NonCommercial-NoDerivatives 4.0 International License.
+ * You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
+.custom-navbar-color {
+    /*background-color: #2a9a5a !important;*/
+    background-color: #ffffff !important;
+}
+
+.custom-search-color {
+    background-color: #4cd5cb !important;
+    border-color: #4cd5cb !important;
+}
+
+.custom-margin-top {
+    left: 0;
+    /*line-height: 200px;*/
+    /*margin-top: -350px;*/
+    margin-top: 30px;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    width: 100%;
+}
+
+.custom-main-projection {
+    padding-right: 250px;
+    padding-left: 250px;
+    margin-top: 0;
+    padding-top: 200px;
+}
+
+.custom-content {
+    font-size: 1.2rem; /* Adjust the base font-size for this section */
+}
+
+.custom-header {
+    font-size: 4rem; /* This will make the main header much bigger */
+    font-weight: 600; /* Making the font-weight higher can give a more impactful look */
+}
+
+.custom-subheader {
+    font-size: 1.2rem; /* Increasing the subheader size */
+    font-weight: 200; /* Slightly bolder than normal but less than the main header */
+    margin-top: 15px; /* Spacing between headers for better readability */
+}
+
+.img-padding {
+    padding-right: 5rem; /* Adjust the value as needed */
+}
+
+.content-padding {
+    padding-left: 5rem; /* Adjust the value as needed */
+}
+
+.custom-btn-main {
+    background-color: #4cd5cb;
+}
+
+.custom-btn-shape-color {
+    border-radius: 20px !important;
+    background-color: rgb(2, 191, 156);
+    padding: 6px 15px;
+    border: 0px;
+}
+
+.custom-btn-shape-color:hover {
+    background-color: rgb(2, 129, 106);
+    color: white;
+}
+
+.navbar {
+    /*display: flex;*/
+    /*align-items: center; !* Centers items vertically *!*/
+    padding-top: 15px;
+    padding-bottom: 15px;
+
+}
+
+.no-margin .nav-link {
+    margin-right: 0 !important;
+}
+
+.col-3 {
+    display: flex;
+    justify-content: flex-end; /* Push content to the extreme right */
+    align-items: center; /* Center content vertically */
+}
+
+.col-3-logo {
+    display: flex;
+    justify-content: flex-start; /* Push content to the extreme right */
+    align-items: center; /* Center content vertically */
+}
+
+.container-fluid {
+    display: flex;
+    justify-content: space-between; /* This separates the logo and the other links/search bar */
+}
+
+.custom-search-center {
+    flex-grow: 2; /* This allows the search div to take up available space */
+    display: flex;
+    justify-content: center; /* This centers the search input */
+}
+
+.d-flex {
+    align-items: center; /* This centers items vertically */
+}
+
+.custom-margin-top-logo {
+    left: 0;
+    /*line-height: 200px;*/
+    margin-top: -350px;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    width: 100%;
+}
+
+html, body {
+    height: 100%;
+}
+
+.page-wrap {
+    min-height: 100%;
+    /* equal to footer height */
+    margin-bottom: -142px;
+}
+
+.page-wrap:after {
+    content: "";
+    display: block;
+}
+
+.site-footer, .page-wrap:after {
+    height: 142px;
+}

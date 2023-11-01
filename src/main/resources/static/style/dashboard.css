@@ -1,0 +1,135 @@
+/*
+ * Copyright (c) Toll System Prototype, KONSTANTIN TODOROV ANDREEV 2023.
+ *
+ * Licensed under the Attribution-NonCommercial-NoDerivatives 4.0 International License.
+ * You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
+
+/* The outer container is made a flex container */
+#greeting-box {
+    display: flex;
+    justify-content: center; /* Horizontally center */
+    align-items: center; /* Vertically center */
+    /*height: 100%;            !* Full viewport height *!*/
+}
+
+/* Styles for the greeting box */
+#greeting-box {
+    padding: 20px;
+    font-weight: 900;
+}
+
+/* Optional: add some spacing and styling for the dashboard menu and its items */
+#dashboard-menu {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center; /* Horizontally center */
+    gap: 80px; /* Provides space between the items */
+    margin-right: 50px;
+    margin-left: 50px;
+    height: 600px;
+    text-decoration: none; /* removes underline from links */
+    color: inherit; /* ensures the link color doesn't change */
+}
+
+#dashboard-menu h3 {
+    background-color: white;
+    box-shadow: 15px 1px 40px white;
+
+}
+
+#dashboard-menu a {
+    text-decoration: none;
+}
+
+#transaction-menu, #journeys-menu, #profile-menu {
+    display: flex; /* Make this a flex container */
+    flex-direction: column; /* Stack child items vertically */
+    align-items: center; /* Center child items horizontally */
+    justify-content: center; /* Center child items vertically */
+    /*padding: 10px;*/
+    flex: 1; /* This ensures all these items take equal space */
+    min-width: 100px; /* Setting a minimum width ensures that the items don't shrink too much */
+    /*background-color: rgb(0, 0, 0);*/
+    text-align: center; /* To center the text inside these items */
+    border-radius: 20px;
+    /*border-style: solid;*/
+    /*color: #ffffff;*/
+    font-weight: 600;
+    transition: transform 0.3s; /* Smooth transformation */
+    text-decoration: none; /* removes underline from links */
+}
+
+/* Change background on hover for better user interaction */
+#transaction-menu:hover, #journeys-menu:hover, #profile-menu:hover {
+    /*background-color: rgba(0, 162, 155, 0.91);*/
+    cursor: pointer;
+    transform: scale(1.05); /* Makes the element 5% bigger */
+    transition: transform 0.3s; /* Smooth transformation */
+}
+
+#img-content-profile {
+    padding: 10px;
+    width: 400px;
+    height: 600px;
+    background-image: url("/img/profile.png");
+    background-size: cover;
+    background-position: center center;
+    background-position-y: 30px;
+    overflow: hidden;
+    border-radius: 40px;
+    z-index: 1;
+    border-style: solid;
+    color: black;
+    font-weight: 800;
+    text-decoration: none; /* removes underline from links */
+}
+
+#img-content-journey {
+    padding: 10px;
+    width: 400px;
+    height: 600px;
+    background-image: url("/img/journey.png");
+    background-size: cover;
+    background-position: center center;
+    background-position-y: -10px;
+    overflow: hidden;
+    border-radius: 40px;
+    z-index: 1;
+    border-style: solid;
+    color: black;
+    font-weight: 800;
+    text-decoration: none; /* removes underline from links */
+}
+
+#img-content-transactions {
+    padding: 10px;
+    width: 400px;
+    height: 600px;
+    background-image: url("/img/transactions.png");
+    background-size: cover;
+    background-position: center center;
+    background-position-y: 30px;
+    overflow: hidden;
+    border-radius: 40px;
+    z-index: 1;
+    border-style: solid;
+    color: black;
+    font-weight: 800;
+    text-decoration: none; /* removes underline from links */
+}
+
+#img-content-profile, #img-content-transactions, #img-content-journey {
+    box-shadow: 20px 10px 20px black;
+}

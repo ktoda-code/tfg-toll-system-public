@@ -29,7 +29,7 @@ This repository hosts my bachelor thesis project, a comprehensive exploration of
 ## Architecture
 The architecture of the system:
 
-![Architecture](thesis/1-flow of data.png)
+![Architecture](thesis/1-flow_of_data.png)
 
 ## A little video demo:
 
